@@ -55,7 +55,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	fmt.Fprint(w, "Hello, World!")
+	fmt.Fprint(w, "How dare Hannah Brown let go of Mike, she is unworthy of him")
 }
 
 // [END indexHandler]
