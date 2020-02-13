@@ -1,31 +1,29 @@
-# Google Cloud Platform Go Samples
+# App Engine for PHP 7.2
 
-[![Kokoro Build Status][kokoro_badge]][kokoro_link]
+> Please note ALL samples in this directory are in `BETA`
 
-This repository holds sample code written in Go that demonstrates the Google
-Cloud Platform.
+[Read the docs](https://cloud.google.com/appengine/docs/standard/php7)
 
-Some samples have accompanying guides on
-[cloud.google.com](https://cloud.google.com). See respective README files for
-details.
+## Getting Started Guides
 
-## Depending on samples
+* [Quickstart](https://cloud.google.com/appengine/docs/standard/php7/quickstart)
+* [Building an App](https://cloud.google.com/appengine/docs/standard/php7/building-app/)
 
-**Copy any code you need from this repository into your own project.**
+## Code Samples
 
-Warning: Do not depend directly on the samples in this repo. Breaking changes
-may be made at any time without warning.
+* [Implementing `Google Auth`](auth)
+* [Connecting to `Cloud SQL`](cloudsql)
+* [Enabling `Stackdriver Error Reporting`](errorreporting)
+* [Using `Stackdriver Logging`](logging)
+* [Implementing a `front controller`](front-controller)
+* [Making `gRPC` calls](grpc)
+* [Using the `Metadata` server](metadata)
+* [Using `Cloud Storage`](storage)
+* [Enabling `Cloud Trace`](trace)
 
-## Contributing changes
+## Framework Guides
 
-Entirely new samples are not accepted. Bug fixes are welcome, either as pull
-requests or as GitHub issues.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute.
-
-## Licensing
-
-Code in this repository is licensed under the Apache 2.0. See [LICENSE](LICENSE).
-
-[kokoro_badge]: https://storage.googleapis.com/cloud-devrel-kokoro-resources/go/golang-samples/system_tests-ubuntu.png
-[kokoro_link]: https://fusion.corp.google.com/projectanalysis/current/KOKORO/prod%3Acloud-devrel%2Fgo%2Fgolang-samples%2Fsystem_tests
+* [Laravel](laravel-framework)
+* [Slim Framework](slim-framework)
+* [Symfony](symfony-framework)
+* [WordPress](wordpress)
