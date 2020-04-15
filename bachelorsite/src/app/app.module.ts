@@ -3,10 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UserComponent } from './user/user.component';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { BachelorformComponent } from './bachelorform/bachelorform.component';
+import { ApplicantformComponent } from './applicantform/applicantform.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserComponent,
+    HomeComponent,
+    PageNotFoundComponent,
+    BachelorformComponent,
+    ApplicantformComponent
   ],
   imports: [
     BrowserModule,
