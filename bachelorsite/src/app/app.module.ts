@@ -8,6 +8,12 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BachelorformComponent } from './bachelorform/bachelorform.component';
 import { ApplicantformComponent } from './applicantform/applicantform.component';
+import { LoginComponent } from './user/login/login.component';
+import { LogoutComponent } from './user/logout/logout.component';
+import { RegisterApplicantsComponent } from './user/register-applicants/register-applicants.component';
+import { ContestantsComponent } from './contestants/contestants.component';
+import { DatesComponent } from './dates/dates.component';
+import { ViewersComponent } from './viewers/viewers.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +22,13 @@ import { ApplicantformComponent } from './applicantform/applicantform.component'
     HomeComponent,
     PageNotFoundComponent,
     BachelorformComponent,
-    ApplicantformComponent
+    ApplicantformComponent,
+    LoginComponent,
+    LogoutComponent,
+    RegisterApplicantsComponent,
+    ContestantsComponent,
+    DatesComponent,
+    ViewersComponent
   ],
   imports: [
     BrowserModule,
