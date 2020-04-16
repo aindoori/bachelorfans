@@ -1,0 +1,25 @@
+body {
+    background-color: #faa0f7;
+    overflow-x: hidden;
+  }
+  
+  #navbarSupportedContent > img {
+    width: 10%;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  
+  .form-inline .form-control{
+    width: 700px;
+  }
+  
+  .nav-item {
+    padding: 5%;
+  }
+
+  h1 {
+    text-align: center;
+    margin-top: 2.5%;
+  }
+  
+ 

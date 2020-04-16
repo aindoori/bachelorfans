@@ -1,0 +1,14 @@
+.navbar-brand > img {
+  border-radius: 50%;
+  width: 220px;
+}
+/* 
+.dropdown-menu{
+  position: relative;
+  z-index: 10000;
+} */
+
+.form-inline .form-control{
+  width: 500px;
+}
+
