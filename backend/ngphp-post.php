@@ -40,51 +40,73 @@ session_start();
 
 switch ($type) {
 
-  case "login":
-    
-    // hello
-
-    break;
-
-  case "logout":
-    // hello
-
-    break;
-
-  case "add_bachelor":
-    // hello
-    break;
-
-  case "add_contestant":
-    // hello
-    break;
-
   case "add_applicant":
-    // hello
-    break;
+    // parse the data
+    $parse_applicant = [];
+    foreach ($data['user'] as $k => $v)
+    {
+      $parse_applicant[$k] = $v;
+    }
 
-  case "update_bachelor":
-    // hello
-    break;
+    $applicantID = $parse_applicant['applicantID'];
+    $name = $parse_applicant['name'];
+    $hash_pwd = password_hash(htmlspecialchars($data['pwd']), PASSWORD_BCRYPT);
+    $age = $parse_applicant['age'];
+    $hometown_city = $parse_applicant['hometown_city'];
+    $hometown_state = $parse_applicant['hometown_state'];
+    $reason = $parse_applicant['reason'];
 
-  case "update_contestant":
-    // hello
+    // store in session
+    $_SESSION['applicantID'] = $applicantID;
+
+    try {
+      addApplicant($applicantID, $name, $hash_pwd, $age, $hometown_city, $hometown_state, $reason);
+      $response['success'] = "true";
+
+    } catch (Exception $e){
+      $response['success'] = "false";
+      $response['error'] = $e;
+    }
+
     break;
 
   case "update_applicant":
-    // hello
-    break;
+    // parse the data
+    $parse_applicant = [];
+    foreach ($data['user'] as $k => $v)
+    {
+      $parse_applicant[$k] = $v;
+    }
 
-  case "delete_bachelor":
-    // hello
-    break;
+    $applicantID = $parse_applicant['applicantID'];
+    $name = $parse_applicant['name'];
+    $hash_pwd = password_hash(htmlspecialchars($data['pwd']), PASSWORD_BCRYPT);
+    $age = $parse_applicant['age'];
+    $hometown_city = $parse_applicant['hometown_city'];
+    $hometown_state = $parse_applicant['hometown_state'];
+    $reason = $parse_applicant['reason'];
 
-  case "delete_contestant":
-    // hello
+    try {
+      updateApplicant($applicantID, $name, $hash_pwd, $age, $hometown_city, $hometown_state, $reason);
+      $response['success'] = "true";
+      
+    } catch (Exception $e){
+      $response['success'] = "false";
+      $response['error'] = $e;
+    }
+
     break;
 
   case "delete_applicant":
-    // hello
+    try {
+      $applicantID = $_SESSION['applicantID'];
+      deleteApplicant($applicantID);
+      $response['success'] = "true";
+      
+    } catch (Exception $e){
+      $response['success'] = "false";
+      $response['error'] = $e;
+    }
     break;
     
   break;
