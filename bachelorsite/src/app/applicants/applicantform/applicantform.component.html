@@ -4,7 +4,7 @@
         <div class="main_text_block">
             <h2>Applicant Registration</h2>
             <div class="container">
-                <form #userForm="ngForm" ng-submit="confirmRegistration()" name="userForm">
+                <form #userForm="ngForm" ng-submit="sendToBackend()" name="userForm">
                     <div class="form-group">
                         <label>Name:</label>
                         <input type="text" class="form-control" name="regName" [(ngModel)]="userModel.name" required #regName>
@@ -48,6 +48,7 @@
 
                     <div *ngIf="success; else elseBlock">
                         <button class="btn btn-primary" (click)="sendToBackend(userForm.value)">Update</button>
+
                     </div>
                     <ng-template #elseBlock>
                         <button class="btn btn-primary" (click)="sendToBackend(userForm.value)">Register</button>

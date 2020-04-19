@@ -13,6 +13,7 @@ import { ViewersComponent } from './viewers/viewers.component';
 import { ApplicantsComponent } from './applicants/applicants.component';
 import { Applicants } from './applicants/applicants';
 import { HttpClientModule } from '@angular/common/http';
+import { DeleteApplicantComponent } from './applicants/delete-applicant/delete-applicant.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     ContestantsComponent,
     DatesComponent,
     ViewersComponent,
-    ApplicantsComponent
+    ApplicantsComponent,
+    DeleteApplicantComponent
   ],
   imports: [
     BrowserModule,
