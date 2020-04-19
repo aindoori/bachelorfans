@@ -9,6 +9,7 @@ import { ApplicantformComponent } from './applicantform/applicantform.component'
 import { ContestantsComponent } from './contestants/contestants.component';
 import { DatesComponent } from './dates/dates.component';
 import { ViewersComponent } from './viewers/viewers.component';
+import { ApplicantsComponent } from './applicants/applicants.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ViewersComponent } from './viewers/viewers.component';
     ApplicantformComponent,
     ContestantsComponent,
     DatesComponent,
-    ViewersComponent
+    ViewersComponent,
+    ApplicantsComponent
   ],
   imports: [
     BrowserModule,
