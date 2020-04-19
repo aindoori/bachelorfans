@@ -1,1 +1,63 @@
-<p>applicantform works!</p>
+<body>
+    <div class="main_panel">
+        <!-- Registration form - successful registration triggers verification section -->
+        <div class="main_text_block">
+            <h2>Applicant Registration</h2>
+            <div class="container">
+                <form #userForm="ngForm" ng-submit="confirmRegistration()" name="userForm">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" name="regName" [(ngModel)]="userModel.name" required #regName>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input type="password" class="form-control" name="password" [(ngModel)]="userModel.hash_pwd" required
+                            #password>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Age:</label>
+                        <input type="text" class="form-control" name="age" [(ngModel)]="userModel.age" required
+                            #age>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hometown city:</label>
+                        <input type="text" class="form-control" name="hometown_city" [(ngModel)]="userModel.hometown_city" required
+                            #hometown_city>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hometown state:</label>
+                        <input type="text" class="form-control" name="hometown_state" [(ngModel)]="userModel.hometown_state" required
+                            #hometown_state>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Profession:</label>
+                        <input type="text" class="form-control" name="profession" [(ngModel)]="userModel.profession" required
+                            #profession>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Reason for applying:</label>
+                        <input type="text" class="form-control" name="reason" [(ngModel)]="userModel.reason" required
+                            #reason>
+                    </div>
+
+                    <div *ngIf="success; else elseBlock">
+                        <button class="btn btn-primary" (click)="sendToBackend(userForm.value)">Update</button>
+                    </div>
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" (click)="sendToBackend(userForm.value)">Register</button>
+                    </ng-template>
+                    
+                </form>
+                <br>
+            </div>
+        </div>
+        <br>
+
+    </div>
+</body>
