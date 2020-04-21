@@ -77,7 +77,7 @@ switch ($type) {
     }
 
     $name = $parse_applicant['name'];
-    $_SESSION['applicantName'] = $name;
+    // $_SESSION['applicantName'] = $name;
     $hash_pwd = password_hash(htmlspecialchars($data['pwd']), PASSWORD_BCRYPT);
     $age = $parse_applicant['age'];
     $hometown_city = $parse_applicant['hometown_city'];
@@ -97,18 +97,8 @@ switch ($type) {
     break;
 
   case "delete_applicant":
-      // check work
-      // $response['checkName'] = $_SESSION['applicantName'];
-    $parse_applicant = [];
-      foreach ($data['user'] as $k => $v)
-      {
-        $parse_applicant[$k] = $v;
-      }
-
-      $name = $parse_applicant['name'];
-
     try {
-      deleteApplicant($name);
+      deleteApplicant($data['name']);
       $response['success'] = "true";
       
     } catch (Exception $e){
