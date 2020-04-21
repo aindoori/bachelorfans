@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DeleteApplicantComponent } from './applicants/delete-applicant/delete-applicant.component';
 import { ApplicantsHomeComponent } from './applicants/applicants-home/applicants-home.component';
 import { UpdateApplicantComponent } from './applicants/update-applicant/update-applicant.component';
+import { DownloadDataComponent } from './download-data/download-data.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UpdateApplicantComponent } from './applicants/update-applicant/update-a
     ApplicantsComponent,
     DeleteApplicantComponent,
     ApplicantsHomeComponent,
-    UpdateApplicantComponent
+    UpdateApplicantComponent,
+    DownloadDataComponent
   ],
   imports: [
     BrowserModule,
