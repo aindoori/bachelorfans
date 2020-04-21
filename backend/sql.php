@@ -40,5 +40,24 @@ function deleteApplicant($name) {
 	$statement->closeCursor();
 }
 
-
+function getAllDates(){
+	global $db;
+	$query = "select * from dates";
+	$statement = $db->prepare($query);
+	//$statement->bindValue(':did', $did);//might not need bindvalue
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	return $results;
+}
+function getAllCourted(){
+	global $db;
+	$query = "select * from courted";
+	$statement = $db->prepare($query);
+	//$statement->bindValue(':did', $did);//might not need bindvalue
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	return $results;
+}
 ?>

@@ -51,10 +51,25 @@ switch ($type) {
 
   case "display_dates":
 
-    break;
+    $query = "SELECT * FROM dates";  
+    $result = mysqli_query($connect, $query);//mysqlquery?  
+    if(mysqli_num_rows($result) > 0) {  
+      while($row = mysqli_fetch_array($result)){  
+           $output[] = $row;  
+      }  
+      echo json_encode($output);  
+ }   
 
   case "display_courted":
-    break;
+   
+    $query = "SELECT * FROM courted";  
+    $result = mysqli_query($connect, $query);//mysqlquery?  
+    if(mysqli_num_rows($result) > 0) {  
+      while($row = mysqli_fetch_array($result)){  
+           $output[] = $row;  
+      }  
+      echo json_encode($output);  
+ }   
 
   case "display_attends":
     break;
