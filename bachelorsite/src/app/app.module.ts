@@ -16,6 +16,8 @@ import { ApplicantsComponent } from './applicants/applicants.component';
 import { Applicants } from './applicants/applicants';
 import { HttpClientModule } from '@angular/common/http';
 import { DeleteApplicantComponent } from './applicants/delete-applicant/delete-applicant.component';
+import { ApplicantsHomeComponent } from './applicants/applicants-home/applicants-home.component';
+import { UpdateApplicantComponent } from './applicants/update-applicant/update-applicant.component';
 
 
 import { CommonModule } from "@angular/common";
@@ -33,7 +35,10 @@ import { CommonModule } from "@angular/common";
     ApplicantsComponent,
     DeleteApplicantComponent,
     AttendsComponent,
-    CourtedComponent
+    CourtedComponent,
+    ApplicantsHomeComponent,
+    UpdateApplicantComponent
+
   ],
   imports: [
     BrowserModule,

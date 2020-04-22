@@ -48,19 +48,17 @@ switch ($type) {
       $parse_applicant[$k] = $v;
     }
 
-    $applicantID = $parse_applicant['applicantID'];
     $name = $parse_applicant['name'];
+    $_SESSION['applicantName'] = $name;
     $hash_pwd = password_hash(htmlspecialchars($data['pwd']), PASSWORD_BCRYPT);
     $age = $parse_applicant['age'];
     $hometown_city = $parse_applicant['hometown_city'];
     $hometown_state = $parse_applicant['hometown_state'];
+    $profession = $parse_applicant['profession'];
     $reason = $parse_applicant['reason'];
 
-    // store in session
-    $_SESSION['applicantID'] = $applicantID;
-
     try {
-      addApplicant($applicantID, $name, $hash_pwd, $age, $hometown_city, $hometown_state, $reason);
+      addApplicant($name, $hash_pwd, $age, $hometown_city, $hometown_state, $profession, $reason);
       $response['success'] = "true";
 
     } catch (Exception $e){
@@ -78,18 +76,19 @@ switch ($type) {
       $parse_applicant[$k] = $v;
     }
 
-    $applicantID = $parse_applicant['applicantID'];
     $name = $parse_applicant['name'];
+    // $_SESSION['applicantName'] = $name;
     $hash_pwd = password_hash(htmlspecialchars($data['pwd']), PASSWORD_BCRYPT);
     $age = $parse_applicant['age'];
     $hometown_city = $parse_applicant['hometown_city'];
     $hometown_state = $parse_applicant['hometown_state'];
+    $profession = $parse_applicant['profession'];
     $reason = $parse_applicant['reason'];
 
     try {
-      updateApplicant($applicantID, $name, $hash_pwd, $age, $hometown_city, $hometown_state, $reason);
+      updateApplicant($name, $hash_pwd, $age, $hometown_city, $hometown_state, $profession, $reason);
       $response['success'] = "true";
-      
+
     } catch (Exception $e){
       $response['success'] = "false";
       $response['error'] = $e;
@@ -99,8 +98,7 @@ switch ($type) {
 
   case "delete_applicant":
     try {
-      $applicantID = $_SESSION['applicantID'];
-      deleteApplicant($applicantID);
+      deleteApplicant($data['name']);
       $response['success'] = "true";
       
     } catch (Exception $e){
