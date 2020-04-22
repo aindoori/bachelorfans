@@ -1,17 +1,19 @@
-<div class="main_panel">
-    <div class="main_text_block">
-        <h2>Delete Applicant</h2>
-        <div class="container">
-            <form #userForm="ngForm" ng-submit="deleteApplicant()" name="userForm">
+<body>
+	<div class="main_panel">
+	    <div class="main_text_block">
+	        <h2>Delete Applicant</h2>
+	        <div class="container">
+	            <form #userForm="ngForm" ng-submit="deleteApplicant()" name="userForm">
 
-				<div class="form-group">
-				    <label>Name to delete:</label>
-				    <input type="text" class="form-control" name="name" [(ngModel)]="userModel.name">
-				</div>
+					<div class="form-group">
+					    <label>Type the full name of the account to delete:</label>
+					    <input type="text" class="form-control" name="name" [(ngModel)]="nameToDelete">
+					</div>
 
-				<button class="btn btn-primary" (click)="deleteApplicant(userForm.value)">Delete this account</button>
+					<button class="btn btn-primary" (click)="deleteApplicant(userForm.value)">Delete this account</button>
 
-			</form>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
+</body>

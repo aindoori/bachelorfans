@@ -1,6 +1,11 @@
 body {
     background-color: #faa0f7;
     overflow-x: hidden;
+    width: 100%;
+  }
+
+  img {
+    align: middle;
   }
   
   #navbarSupportedContent > img {
