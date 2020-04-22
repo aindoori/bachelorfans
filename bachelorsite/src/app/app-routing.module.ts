@@ -10,7 +10,6 @@ import { AttendsComponent } from './attends/attends.component';
 import { ViewersComponent } from './viewers/viewers.component';
 import { ApplicantsHomeComponent } from './applicants/applicants-home/applicants-home.component';
 import { UpdateApplicantComponent } from './applicants/update-applicant/update-applicant.component';
-import { DownloadDataComponent } from './download-data/download-data.component';
 
 const routes: Routes = [
 	{
@@ -61,11 +60,6 @@ const routes: Routes = [
 	{
 		path: 'viewers',
 		component: ViewersComponent
-	},
-
-	{
-		path: 'downloadData',
-		component: DownloadDataComponent
 	},
 
   { path: '',   redirectTo: '/home', pathMatch: 'full' }
