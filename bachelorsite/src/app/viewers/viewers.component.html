@@ -1,9 +1,10 @@
-<body>
-    <div class="main_panel">
-        <div class="main_text_block">
-            <h2>Viewers</h2>
-           
-        </div>
-    </div>
-</body>
-
+<table>
+    <tr>
+      <th>Bachelor ID</th>
+      <th>Number of Viewers</th>
+    </tr>
+    <tr *ngFor="let mydata of data[0]">
+        <td>{{mydata.bachelorID}}</td>
+        <td>{{mydata.number_of_viewers}}</td>
+    </tr>
+</table>

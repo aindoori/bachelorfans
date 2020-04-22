@@ -1,7 +1,7 @@
 <?php
 // created new user in xampp
-$username = 'bachelorfans';
-$password = 'mike4bachelor2020';
+$username = 'root';
+//$password = 'mike4bachelor2020';
 $host = 'localhost';
 $dbname = 'bachelorfans';
 

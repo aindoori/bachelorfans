@@ -1,8 +1,78 @@
+<table>
+    <tr>
+      <th>Contestant ID</th>
+      <th>Num. Voters</th>
+      <th>Contestant Name</th>
+      <th>Age</th>
+      <th>Hometown City</th>
+      <th>Hometown State</th>
+      <th>Rose Ranking</th>
+      <th>Sent home</th>
+      
+    </tr>
+    <tr *ngFor="let mydata of data[0]">
+        <td>{{mydata.contestantID}}</td>
+        <td>{{mydata.num_voters}}</td>
+        <td>{{mydata.contestant_name}}</td>
+        <td>{{mydata.age}}</td>
+        <td>{{mydata.hometown_city}}</td>
+        <td>{{mydata.hometown_state}}</td>
+        <td>{{mydata.rose_ranking}}</td>
+        <td>{{mydata.sent_home}}</td>
+    </tr>
+  
+
+
+<!-- <!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>softAOX | Display data from Mysql Database Using AngularJS with PHP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+
 <body>
-    <div class="main_panel">
-        <div class="main_text_block">
-            <h2>Contestants</h2>
-           
+    <div class="container">
+        <h3 align="center">Display data from Mysql Database Using AngularJS with PHP</h3>
+        <div ng-app="sa_display" ng-controller="controller" ng-init="display_data()">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Contestant ID</th>
+                    <th>Num. Voters</th>
+                    <th>Contestant Name</th>
+                    <th>Age</th>
+                    <th>Hometown City</th>
+                    <th>Hometown State</th>
+                    <th>Rose Ranking</th>
+                    <th>Sent home</th>
+                </tr>
+                <tr ng-repeat="{{x}}">
+                    <td>{{x.id}}</td>
+                    <td>{{x.voters}}</td>
+                    <td>{{x.name}}</td>
+                    <td>{{x.age}}</td>
+                    <td>{{x.hcity}}</td>
+                    <td>{{x.hstate}}</td>
+                    <td>{{x.roseranking}}</td>
+                    <td>{{x.senthome}}</td>
+                </tr>
+            </table>
         </div>
     </div>
+    
+    <script>
+        var app = angular.module("sa_display", []);
+        app.controller("controller", function ($scope, $http) {
+            $scope.display_data = function () {
+                $http.get("display.php")
+                    .success(function (data) {
+                        $scope.names = data;
+                    });
+            }
+        });
+    </script>
 </body>
+
+</html> -->
