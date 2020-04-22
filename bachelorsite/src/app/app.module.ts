@@ -10,6 +10,8 @@ import { ApplicantformComponent } from './applicants/applicantform/applicantform
 import { ContestantsComponent } from './contestants/contestants.component';
 import { DatesComponent } from './dates/dates.component';
 import { ViewersComponent } from './viewers/viewers.component';
+import { CourtedComponent } from './courted/courted.component';
+import { AttendsComponent } from './attends/attends.component';
 import { ApplicantsComponent } from './applicants/applicants.component';
 import { Applicants } from './applicants/applicants';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +28,9 @@ import { DeleteApplicantComponent } from './applicants/delete-applicant/delete-a
     DatesComponent,
     ViewersComponent,
     ApplicantsComponent,
-    DeleteApplicantComponent
+    DeleteApplicantComponent,
+    CourtedComponent,
+    AttendsComponent
   ],
   imports: [
     BrowserModule,

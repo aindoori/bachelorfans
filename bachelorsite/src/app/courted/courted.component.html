@@ -1,9 +1,58 @@
+<table>
+    <tr>
+      <th>Contestant ID</th>
+      <th>Bachelor ID</th>
+     
+      
+    </tr>
+    <tr *ngFor="let mydata of data[0]">
+        <td>{{mydata.contestantID}}</td>
+        <td>{{mydata.bachelorID}}</td>
+        
+    </tr>
+  
+
+
+<!-- <!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>softAOX | Display data from Mysql Database Using AngularJS with PHP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+
 <body>
-    <div class="main_panel">
-        <div class="main_text_block">
-            <h2>Relationships</h2>
-           
+    <div class="container">
+        <h3 align="center">Display data from Mysql Database Using AngularJS with PHP</h3>
+        <div ng-app="sa_display" ng-controller="controller" ng-init="display_data()">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Contestant ID</th>
+                    <th>Bachelor ID</th>
+                    
+                </tr>
+                <tr ng-repeat="{{x}}">
+                    <td>{{x.cid}}</td>
+                    <td>{{x.bid}}</td>
+                    
+                </tr>
+            </table>
         </div>
     </div>
+    
+    <script>
+        var app = angular.module("sa_display", []);
+        app.controller("controller", function ($scope, $http) {
+            $scope.display_data = function () {
+                $http.get("display.php")
+                    .success(function (data) {
+                        $scope.names = data;
+                    });
+            }
+        });
+    </script>
 </body>
 
+</html> -->
