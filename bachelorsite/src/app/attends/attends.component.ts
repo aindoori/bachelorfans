@@ -1,13 +1,6 @@
 //import { Component, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-//import { NgModule } from '@angular/core';
-//import { CommonModule } from '@angular/common';
-//import { BrowserModule } from '@angular/platform-browser';
-
-//@NgModule({
-  //imports: [CommonModule],
-//})
 
 @Component({
   selector: 'app-attends',
