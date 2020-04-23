@@ -1,11 +1,6 @@
 body {
     background-color: #faa0f7;
     overflow-x: hidden;
-    width: 100%;
-  }
-
-  img {
-    align: middle;
   }
   
   #navbarSupportedContent > img {
@@ -25,6 +20,49 @@ body {
   h1 {
     text-align: center;
     margin-top: 2.5%;
+  }
+  
+  .grid {
+    margin: 0 auto;
+    /* width: 960px; */         /* initial design */
+    width: 100%;                /* responsive */  
+    padding: 3%;
+    text-align: center;
+  }
+
+  .highlight{
+    border-radius: 10px;
+    align-self: top;
+    width: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
+    height: 100%;
+    padding: 3%;
+  }
+
+  .content-col {
+    width: 100%;
+    background-color: #ffffff;
+    display: inline-block;
+    vertical-align: top;
+  } 
+  
+  .subtitle {
+    color: #003333; 
+    font-size: 21px;
+  }
+  
+  .highlight a:hover h3 {
+    color: #000000;
+  }
+  
+  .highlight img {
+    border-radius: 10px;
+    background-size: cover;
+    max-width: 100%;
+    margin-bottom: 1%;
+    align-content: center;
+    object-fit: contain;
   }
   
  
