@@ -20,39 +20,36 @@ export class AttendsComponent implements OnInit {
   }
 
 
-  downloadFile() {
+  downloadCSV() {
     const replacer = (key, value) => value === null ? '' : value; 
     const header = Object.keys(this.data[0]);
     let csv = this.data.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','));
     //csv.unshift(header.join(','));
     let csvArray = csv.join('\r\n');
     var blob = new Blob([csvArray], {type: 'text/csv' })
-
-    //var jsonObject = JSON.stringify(this.data);
-    //var blob = new Blob([jsonObject], {type: 'text/csv' })
     saveAs(blob, "attends.csv");
   }
 
-  download(){
-    // Variable to store data as CSV string 
+
+  downloadJSON() {
+    var jsonObject = JSON.stringify(this.data);
+    var blob = new Blob([jsonObject], {type: "application/json"});
+    saveAs(blob, "attends.json");
+  }
+
+  downloadTest(){
     let csvStr = 'Contestant ID, Date ID\n';
-    // Fetch data from service
     for(let data of this.data){
       var recordStr = data.contestantID + ',' + data.dateID
       csvStr = csvStr + recordStr + '\n'
     }
-    // Convert string to blob
     var csvBlob = new Blob([csvStr], {
       type: 'text/csv'
     });
-    // Download
     saveAs(csvBlob,'data.csv')
 }
 
-
   ngOnInit(): void { }
-
-
 
 }
 
