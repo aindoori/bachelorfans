@@ -15,7 +15,8 @@ header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
         die("Connection failed: " . $conn->connect_error);
     } 
     //echo "Connected successfully";
-    $sql = "SELECT * FROM attends";
+    //$sql = "SELECT * FROM attends";
+    $sql = "SELECT contestant.contestant_name, dates.activity FROM ((attends inner join dates on attends.dateID = dates.dateID) inner join contestant on attends.contestantID = contestant.contestantID)";
     $result = mysqli_query($conn,$sql); 
     $myArray = array();
     if ($result->num_rows > 0) {
