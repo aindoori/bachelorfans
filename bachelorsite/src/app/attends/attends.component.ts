@@ -33,6 +33,22 @@ export class AttendsComponent implements OnInit {
     saveAs(blob, "attends.csv");
   }
 
+  download(){
+    // Variable to store data as CSV string 
+    let csvStr = 'Contestant ID, Date ID\n';
+    // Fetch data from service
+    for(let data of this.data){
+      var recordStr = data.contestantID + ',' + data.dateID
+      csvStr = csvStr + recordStr + '\n'
+    }
+    // Convert string to blob
+    var csvBlob = new Blob([csvStr], {
+      type: 'text/csv'
+    });
+    // Download
+    saveAs(csvBlob,'data.csv')
+}
+
 
   ngOnInit(): void { }
 
