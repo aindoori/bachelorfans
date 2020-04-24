@@ -15,7 +15,8 @@ header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
         die("Connection failed: " . $conn->connect_error);
     } 
     //echo "Connected successfully";
-    $sql = "SELECT * FROM courted";
+    //$sql = "SELECT * FROM courted";
+    $sql = "SELECT contestant.contestant_name, bachelor.bachelor_name FROM ((courted inner join bachelor on courted.bachelorID = bachelor.bachelorID) inner join contestant on courted.contestantID = contestant.contestantID)";
     $result = mysqli_query($conn,$sql); 
     $myArray = array();
     if ($result->num_rows > 0) {
