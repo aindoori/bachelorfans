@@ -8,6 +8,7 @@ import { DatesComponent } from './dates/dates.component';
 import { CourtedComponent } from './courted/courted.component';
 import { AttendsComponent } from './attends/attends.component';
 import { ViewersComponent } from './viewers/viewers.component';
+import { BachelorComponent } from './bachelor/bachelor.component';
 import { ApplicantsHomeComponent } from './applicants/applicants-home/applicants-home.component';
 import { UpdateApplicantComponent } from './applicants/update-applicant/update-applicant.component';
 
@@ -60,6 +61,10 @@ const routes: Routes = [
 	{
 		path: 'viewers',
 		component: ViewersComponent
+	},
+	{
+		path: 'bachelor',
+		component: BachelorComponent
 	},
 
   { path: '',   redirectTo: '/home', pathMatch: 'full' }

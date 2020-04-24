@@ -1,0 +1,17 @@
+<div>
+  <button (click)="downloadJSON()" style="float: right;" type="button">Download JSON </button>
+</div>
+<table>
+  <tr>
+    <th>Bachelor ID</th>
+    <th>Name</th>
+    <th>Rose Ranking</th>
+    <th>Number of Voters</th>
+  </tr>
+  <tr *ngFor="let mydata of data[0]">
+      <td>{{mydata.bachelorID}}</td>
+      <td>{{mydata.bachelor_name}}</td>
+      <td>{{mydata.rose_ranking}}</td>
+      <td>{{mydata.num_voters}}</td>
+  </tr>
+</table>

@@ -23,3 +23,6 @@ describe('CourtedComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+});
+

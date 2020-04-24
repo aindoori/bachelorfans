@@ -1,8 +1,26 @@
-<body>
-    <div class="main_panel">
-        <div class="main_text_block">
-            <h2>Dates</h2>
-           
-        </div>
-    </div>
-</body>
+<div>
+  <button (click)="downloadJSON()" style="float: right;" type="button">Download JSON </button>
+</div>
+<table>
+    <tr>
+      <th>Date ID</th>
+      <th>Bachelor ID</th>
+      <th>Country</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Activity</th>
+      <th>Group Date(Y/N)</th>
+      <th>Rose</th>
+      
+    </tr>
+    <tr *ngFor="let mydata of data[0]">
+        <td>{{mydata.dateID}}</td>
+        <td>{{mydata.bachelorID}}</td>
+        <td>{{mydata.country}}</td>
+        <td>{{mydata.state}}</td>
+        <td>{{mydata.city}}</td>
+        <td>{{mydata.activity}}</td>
+        <td>{{mydata.groupDate}}</td>
+        <td>{{mydata.rose}}</td>
+    </tr>
+</table>
