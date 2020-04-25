@@ -4,6 +4,10 @@ body {
     min-height: 100vh;
 }
 
+p {
+	padding-top: 2%;
+}
+
 .main_panel {
 	padding: 5%;
 }

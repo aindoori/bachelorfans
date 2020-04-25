@@ -45,7 +45,7 @@
           <a class="nav-link" routerLink="/applicantsHome" routerLinkActive="active">Applicant Home</a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!loggedIn">
           <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
         </li>
 

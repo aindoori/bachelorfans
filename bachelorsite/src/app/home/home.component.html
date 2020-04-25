@@ -28,10 +28,8 @@
       <div class="crop">
         <img src="../assets/applicants.png" alt="applicants">
       </div>
-      <a class="subtitle" routerLink="/applicantsHome" routerLinkActive="active" style="color: #1664e0">Applicant Portal</a>
+      <a class="subtitle" routerLink="/applicantsHome" routerLinkActive="active" style="color: #1664e0" *ngIf="loggedIn">Applicant Portal</a>
     </section>
-
-
 
     </div>
 </section>
