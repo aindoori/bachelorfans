@@ -21,6 +21,8 @@
         <td>{{mydata.age}}</td>
         <td>{{mydata.hometown_city}}</td>
         <td>{{mydata.hometown_state}}</td>
-        <td>{{mydata.rose_ranking}}</td>
+        <td>{{mydata.rose_ranking}}
+        <button (click)="downvote(mydata.contestantID)" style="float: right;" type="button">Downvote</button>
+      <button (click)="upvote(mydata.contestantID)" style="float: right;" type="button">Upvote </button></td>
         <td>{{mydata.sent_home}}</td>
     </tr>

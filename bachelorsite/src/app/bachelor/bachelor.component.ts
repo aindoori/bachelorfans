@@ -1,7 +1,7 @@
 //import { Component, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BACHELOR_URL } from '../backend';
+import { BACHELOR_URL, POST_URL } from '../backend';
 import { saveAs } from 'file-saver';
 
 @Component({
@@ -10,6 +10,7 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./bachelor.component.css']
 })
 export class BachelorComponent {
+  ID: string;
 
   title = 'angular8phpmyadmindatabse';
   data = [];
@@ -20,6 +21,68 @@ export class BachelorComponent {
    
     
     }, error => console.error(error));
+  }
+
+  upvote(bachID) {
+    // console.log(bachID);
+    this.ID = bachID;
+
+    console.log(this.ID);
+
+    let params = JSON.stringify({
+      type: "upvote_bachelor",
+      data: {
+        bachID: this.ID,
+      }
+    });
+
+    console.log('You submitted value: ', {type: "upvote_bachelor", data:this.ID});
+
+    this.http.post(POST_URL, params)
+    .subscribe((response) => {
+         console.log('Response from backend ', response);
+        if (response['success'] == "true"){
+          this.ID = response["data"];
+          //alert("Success!");
+        }
+        else{
+          alert("Something went wrong");
+        }
+    }, (error) => {
+         // An error occurs, handle an error in some way
+         console.log('Error ', error);
+    });
+  }
+
+  downvote(bachID) {
+    // console.log(bachID);
+    this.ID = bachID;
+
+    console.log(this.ID);
+
+    let params = JSON.stringify({
+      type: "downvote_bachelor",
+      data: {
+        bachID: this.ID,
+      }
+    });
+
+    console.log('You submitted value: ', {type: "downvote_bachelor", data:this.ID});
+
+    this.http.post(POST_URL, params)
+    .subscribe((response) => {
+         console.log('Response from backend ', response);
+        if (response['success'] == "true"){
+          this.ID = response["data"];
+          //alert("Success!");
+        }
+        else{
+          alert("Something went wrong");
+        }
+    }, (error) => {
+         // An error occurs, handle an error in some way
+         console.log('Error ', error);
+    });
   }
 
   downloadJSON() {

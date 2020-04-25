@@ -1,7 +1,7 @@
 //import { Component, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CONTESTANT_URL } from '../backend';
+import { CONTESTANT_URL, POST_URL } from '../backend';
 import { saveAs } from 'file-saver';
 
 @Component({
@@ -10,7 +10,7 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./contestants.component.css']
 })
 export class ContestantsComponent {
-
+  ID: string;
   title = 'angular8phpmyadmindatabse';
   data = [];
   constructor(private http: HttpClient) {
@@ -21,6 +21,69 @@ export class ContestantsComponent {
     
     }, error => console.error(error));
   }
+
+  upvote(contestantID) {
+    // console.log(contestantID);
+    this.ID = contestantID;
+
+    console.log(this.ID);
+
+    let params = JSON.stringify({
+      type: "upvote_contestant",
+      data: {
+        contestantID: this.ID,
+      }
+    });
+
+    console.log('You submitted value: ', {type: "upvote_contestant", data:this.ID});
+
+    this.http.post(POST_URL, params)
+    .subscribe((response) => {
+         console.log('Response from backend ', response);
+        if (response['success'] == "true"){
+          this.ID = response["data"];
+          //alert("Success!");
+        }
+        else{
+          alert("Something went wrong");
+        }
+    }, (error) => {
+         // An error occurs, handle an error in some way
+         console.log('Error ', error);
+    });
+  }
+
+  downvote(contestantID) {
+    // console.log(contestantID);
+    this.ID = contestantID;
+
+    console.log(this.ID);
+
+    let params = JSON.stringify({
+      type: "downvote_contestant",
+      data: {
+        contestantID: this.ID,
+      }
+    });
+
+    console.log('You submitted value: ', {type: "downvote_contestant", data:this.ID});
+
+    this.http.post(POST_URL, params)
+    .subscribe((response) => {
+         console.log('Response from backend ', response);
+        if (response['success'] == "true"){
+          this.ID = response["data"];
+          //alert("Success!");
+        }
+        else{
+          alert("Something went wrong");
+        }
+    }, (error) => {
+         // An error occurs, handle an error in some way
+         console.log('Error ', error);
+    });
+  }
+
   downloadJSON() {
     var jsonObject = JSON.stringify(this.data);
     var blob = new Blob([jsonObject], {type: "application/json"});

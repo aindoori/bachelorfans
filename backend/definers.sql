@@ -1,0 +1,10 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getBachelors`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER select * from bachelor;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getViewers`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER select * from viewers;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAttends`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+SELECT contestant.contestant_name, dates.activity FROM ((attends inner join dates on attends.dateID = dates.dateID) 
+	inner join contestant on attends.contestantID = contestant.contestantID);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getContestants`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER select * from contestant;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCourted`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+SELECT contestant.contestant_name, bachelor.bachelor_name FROM ((courted inner join bachelor on courted.bachelorID = bachelor.bachelorID) 
+	inner join contestant on courted.contestantID = contestant.contestantID);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getDates`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER select * from dates;
