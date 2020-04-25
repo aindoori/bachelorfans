@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           let found = response['success'];
           if (found) {
             localStorage.setItem('session', response['session']);
-            // localStorage.setItem('user', JSON.stringify(response['data']));
+            localStorage.setItem('user', JSON.stringify(response['data']));
             this.authenticationService.login();
             alert("Login Success!");
             this.router.navigate(['/home']);
