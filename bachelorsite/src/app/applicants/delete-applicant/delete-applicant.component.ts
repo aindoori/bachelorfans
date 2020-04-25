@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Applicants } from '../applicants';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { POST_URL } from '../../backend';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-applicant',
@@ -11,13 +12,30 @@ import { POST_URL } from '../../backend';
 export class DeleteApplicantComponent implements OnInit {
   success: boolean;
   nameToDelete: string;
+  loggedIn: boolean;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private http: HttpClient
+  ) { }
 
   userModel = new Applicants('','', 21, '', '', '', '');
   responsedata = new Applicants('','', 21, '', '', '', '');
 
   ngOnInit(): void {
+    console.log("initiating");
+    let user = localStorage.getItem('user');
+    console.log(JSON.parse(user)['name']);
+    if (user) {
+      // this.name = JSON.parse(user)['name'];
+      this.loggedIn = true;
+    }
+    else{
+      // this.name = 'Log In';
+      this.loggedIn = false;
+      this.router.navigate(['/home']);
+    }
   }
 
   deleteApplicant(data) {
