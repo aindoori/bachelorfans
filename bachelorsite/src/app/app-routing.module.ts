@@ -11,11 +11,23 @@ import { ViewersComponent } from './viewers/viewers.component';
 import { BachelorComponent } from './bachelor/bachelor.component';
 import { ApplicantsHomeComponent } from './applicants/applicants-home/applicants-home.component';
 import { UpdateApplicantComponent } from './applicants/update-applicant/update-applicant.component';
+import { LoginComponent } from './applicants/login/login.component';
+import { LogoutComponent } from './applicants/logout/logout.component';
 
 const routes: Routes = [
 	{
 	    path: 'home',
 	    component: HomeComponent
+  	},
+
+  	{
+	    path: 'login',
+	    component: LoginComponent
+  	},
+
+  	{
+	    path: 'logout',
+	    component: LogoutComponent
   	},
 
   	{
