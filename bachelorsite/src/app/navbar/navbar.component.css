@@ -1,0 +1,9 @@
+.navbar-brand > img {
+  /*border-radius: 50%;*/
+  width: 220px;
+}
+
+.form-inline .form-control{
+  width: 500px;
+}
+

@@ -19,65 +19,6 @@
 </head>
 
 <body>
-  
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-      <a class="navbar-brand" href="#">
-        <img src="../assets/logo.png" alt="bachelorFANS">
-      </a>
-      <ul class="navbar-nav mr-auto">
-
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/bachelor" routerLinkActive="active">Bachelors</a>
-        </li>
-
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/contestants" routerLinkActive="active">Contestants</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dates" routerLinkActive="active">Date Activities</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/courted" routerLinkActive="active">Relationships</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/attends" routerLinkActive="active">Date History</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/viewers" routerLinkActive="active">Viewers</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/applicantsHome" routerLinkActive="active">Applicant Home</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/logout" routerLinkActive="active">Logout</a>
-        </li>
-
-      </ul>
-      
-    </div>
-  </nav>
+  <app-navbar></app-navbar>
 </body>
 <router-outlet></router-outlet>

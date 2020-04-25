@@ -21,6 +21,7 @@ import { UpdateApplicantComponent } from './applicants/update-applicant/update-a
 import { CommonModule } from "@angular/common";
 import { LoginComponent } from './applicants/login/login.component';
 import { LogoutComponent } from './applicants/logout/logout.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LogoutComponent } from './applicants/logout/logout.component';
     UpdateApplicantComponent,
     BachelorComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    NavbarComponent
 
   ],
   imports: [

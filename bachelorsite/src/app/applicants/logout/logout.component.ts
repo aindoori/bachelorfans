@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { POST_URL } from '../../backend'
+import { POST_URL } from '../../backend';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication.service';
