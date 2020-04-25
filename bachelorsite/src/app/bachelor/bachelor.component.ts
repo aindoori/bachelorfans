@@ -24,8 +24,10 @@ export class BachelorComponent {
   }
 
   upvote(bachID) {
-    console.log(bachID);
+    // console.log(bachID);
     this.ID = bachID;
+
+    console.log(this.ID);
 
     let params = JSON.stringify({
       type: "upvote_bachelor",
@@ -41,7 +43,7 @@ export class BachelorComponent {
          console.log('Response from backend ', response);
         if (response['success'] == "true"){
           this.ID = response["data"];
-          alert("Success!");
+          //alert("Success!");
         }
         else{
           alert("Something went wrong");
@@ -53,7 +55,34 @@ export class BachelorComponent {
   }
 
   downvote(bachID) {
-    console.log(bachID);
+    // console.log(bachID);
+    this.ID = bachID;
+
+    console.log(this.ID);
+
+    let params = JSON.stringify({
+      type: "downvote_bachelor",
+      data: {
+        bachID: this.ID,
+      }
+    });
+
+    console.log('You submitted value: ', {type: "downvote_bachelor", data:this.ID});
+
+    this.http.post(POST_URL, params)
+    .subscribe((response) => {
+         console.log('Response from backend ', response);
+        if (response['success'] == "true"){
+          this.ID = response["data"];
+          //alert("Success!");
+        }
+        else{
+          alert("Something went wrong");
+        }
+    }, (error) => {
+         // An error occurs, handle an error in some way
+         console.log('Error ', error);
+    });
   }
 
   downloadJSON() {
