@@ -9,6 +9,7 @@ create table if not exists bachelor(
     bachelorID varchar(10) not null primary key, -- primary key bc there are two Brad Womacks (season number!)
     bachelor_name varchar(40) not null,
     rose_ranking double not null,
+    constraint checkRoseRanking check (rose_ranking <= 1),
     num_voters int not null
 );
 
@@ -22,6 +23,7 @@ create table if not exists contestant(
     hometown_city varchar(40) not null,
     hometown_state varchar(40) not null,
     rose_ranking double not null,
+    constraint checkRoseRanking check (rose_ranking <= 1),
     sent_home bit not null, -- 0 if not sent home, 1 if sent home
     num_voters int not null
 );
