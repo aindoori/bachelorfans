@@ -11,7 +11,9 @@
   <tr *ngFor="let mydata of data[0]">
       <td>{{mydata.bachelorID}}</td>
       <td>{{mydata.bachelor_name}}</td>
-      <td>{{mydata.rose_ranking}}</td>
+      <td>{{mydata.rose_ranking}}
+      <button (click)="downvote(mydata.bachelorID)" style="float: right;" type="button">Downvote</button>
+      <button (click)="upvote(mydata.bachelorID)" style="float: right;" type="button">Upvote </button></td>
       <td>{{mydata.num_voters}}</td>
   </tr>
 </table>

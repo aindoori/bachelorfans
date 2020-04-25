@@ -30,7 +30,7 @@ function updateApplicant($name, $pwd, $age, $city, $state, $profession, $reason)
 	$statement->closeCursor();
 }
 
-// have them type their username and password to confirm deletion
+// alter table applicants auto_increment = 1;
 function deleteApplicant($name) {
 	global $db;
 	$query = "delete from applicants where name=:name";
@@ -40,24 +40,40 @@ function deleteApplicant($name) {
 	$statement->closeCursor();
 }
 
-function getAllDates(){
+function getAllBachelors() {
 	global $db;
-	$query = "select * from dates";
+	$query = "CALL `getBachelors`()";
 	$statement = $db->prepare($query);
-	//$statement->bindValue(':did', $did);//might not need bindvalue
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
 	return $results;
 }
-function getAllCourted(){
+
+// helper function for the stored procedure
+function getRoseRanking($ID) {
 	global $db;
-	$query = "select * from courted";
+	$query = "select rose_ranking from bachelor where bachelorID = :ID";
 	$statement = $db->prepare($query);
-	//$statement->bindValue(':did', $did);//might not need bindvalue
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
 	return $results;
 }
+
+function getNumVoters($ID) {
+	global $db;
+	$query = "select num_voters from bachelor where bachelorID = :ID";
+	$statement = $db->prepare($query);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	return $results;
+}
+
+function upvoteBachelor($ID, $numVoters) {
+
+}
+
+
 ?>

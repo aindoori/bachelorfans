@@ -1,13 +1,13 @@
 <?php
-header('Access-Control-Allow-Origin: http://localhost:4200');
-// header('Access-Control-Allow-Origin: *');
+//header('Access-Control-Allow-Origin: http://localhost:4200');
+header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding');
 header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
-    $servername = "localhost";
-    $username   = "root";
-    $password   = "";
-    $dbname     = "bachelorfans";
+    $servername = 'localhost';
+    $username   = 'bachelorfans';
+    $password   = 'mike4bachelor2020';
+    $dbname     = 'bachelorfans';
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
@@ -15,8 +15,9 @@ header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
         die("Connection failed: " . $conn->connect_error);
     } 
     //echo "Connected successfully";
-    $sql = "SELECT * FROM viewers";
+    $sql = "CALL `getViewers`()";
     $result = mysqli_query($conn,$sql); 
+    //echo "results: " . $result->num_rows;
     $myArray = array();
     if ($result->num_rows > 0) {
     // output data of each row
@@ -24,6 +25,7 @@ header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
             $myArray[] = $row;
         }
         print json_encode($myArray);
+        //echo "DONE";
     } 
     else 
     {

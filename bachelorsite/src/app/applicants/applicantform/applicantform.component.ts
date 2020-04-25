@@ -54,7 +54,7 @@ export class ApplicantformComponent implements OnInit {
     }, (error) => {
          // An error occurs, handle an error in some way
          console.log('Error ', error);
-    });
+    }); 
   }
 
 }
