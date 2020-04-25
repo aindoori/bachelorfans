@@ -3,10 +3,10 @@
 include 'attends.php';
 
 //get records from database
-$servername = "localhost";
-$username   = "root";
-$password   = "";
-$dbname     = "bachelorfans";
+$servername = 'localhost';
+$username   = 'bachelorfans';
+$password   = 'mike4bachelor2020';
+$dbname     = 'bachelorfans';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection

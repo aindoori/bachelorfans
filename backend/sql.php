@@ -30,6 +30,17 @@ function updateApplicant($name, $pwd, $age, $city, $state, $profession, $reason)
 	$statement->closeCursor();
 }
 
+function getApplicantByName($name) {
+	global $db;
+	$query = "select * from applicants where name=:name";
+	$statement = $db->prepare($query);
+	$statement->bindValue(':name', $name);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+	return $results;
+}
+
 // alter table applicants auto_increment = 1;
 function deleteApplicant($name) {
 	global $db;
@@ -50,29 +61,49 @@ function getAllBachelors() {
 	return $results;
 }
 
-// helper function for the stored procedure
-function getRoseRanking($ID) {
+function upvoteBachelor($ID) {
 	global $db;
-	$query = "select rose_ranking from bachelor where bachelorID = :ID";
+	$query = "update bachelor set rose_ranking = rose_ranking + 0.1 where bachelorID=:ID";
 	$statement = $db->prepare($query);
+	$statement->bindValue(':ID', $ID);
 	$statement->execute();
-	$results = $statement->fetchAll();
 	$statement->closeCursor();
-	return $results;
 }
 
-function getNumVoters($ID) {
+function downvoteBachelor($ID) {
 	global $db;
-	$query = "select num_voters from bachelor where bachelorID = :ID";
+	$query = "update bachelor set rose_ranking = rose_ranking - 0.1 where bachelorID=:ID";
 	$statement = $db->prepare($query);
+	$statement->bindValue(':ID', $ID);
 	$statement->execute();
-	$results = $statement->fetchAll();
 	$statement->closeCursor();
-	return $results;
 }
 
-function upvoteBachelor($ID, $numVoters) {
+function updateNumVoters($ID) {
+	global $db;
+	$query = "update bachelor set num_voters = num_voters + 1 where bachelorID=:ID";
+	$statement = $db->prepare($query);
+	$statement->bindValue(':ID', $ID);
+	$statement->execute();
+	$statement->closeCursor();
+}
 
+function upvoteContestant($ID) {
+	global $db;
+	$query = "update contestant set rose_ranking = rose_ranking + 0.05 where contestantID=:ID";
+	$statement = $db->prepare($query);
+	$statement->bindValue(':ID', $ID);
+	$statement->execute();
+	$statement->closeCursor();
+}
+
+function downvoteContestant($ID) {
+	global $db;
+	$query = "update contestant set rose_ranking = rose_ranking - 0.05 where contestantID=:ID";
+	$statement = $db->prepare($query);
+	$statement->bindValue(':ID', $ID);
+	$statement->execute();
+	$statement->closeCursor();
 }
 
 

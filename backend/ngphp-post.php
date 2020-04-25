@@ -36,9 +36,105 @@ if(isset($data['session'])){
   $response['sessionid'] = $data['session'];
   session_id( $data['session']);
 }
+
 session_start();
 
 switch ($type) {
+  case "login":
+    $sqldata = getApplicantByName($data['name']);
+    if($sqldata){
+      // $sqlparse = parse($sqldata[0]);
+      $pwd = htmlspecialchars($data['pwd']);
+      if (password_verify($pwd, $sqldata[0]['hash_pwd'])){
+        //$user = make_user($sqldata[0]);
+        // make a user
+        $applicant = (object) [
+          'name' => $sqldata[0]['name'], 
+          'age' => $sqldata[0]['age'], 
+          'hometown_city' => $sqldata[0]['hometown_city'], 
+          'hometown_state' => $sqldata[0]['hometown_state'], 
+          'profession' => $sqldata[0]['profession'], 
+          'reason' => $sqldata[0]['reason']
+        ];
+
+        $_SESSION['user'] = $applicant;
+        $response['data'] = $applicant;
+        $response['success'] = true;
+        $response['session'] = session_id();
+        $response['messsage'] = "Passwords Match!";
+
+      } else{
+        $response['messsage'] = "Wrong Password!";
+      }
+    } else{
+      $response['messsage'] = "User does not exist!";
+    }
+    
+    // Start Session
+    break;
+
+  case "logout":
+    if(empty($data['session'])){
+      $response['error'] = "Error: No Session ID provided";
+      $response['message'] = "not signed in";
+
+    } else {  // Check if there are session variables
+       foreach ($_SESSION as $key => $value)
+       {
+          unset($_SESSION[$key]);
+       }
+       session_destroy();     // complete terminate the session
+       $response['message'] = "Log Out Success!";
+       $response['success'] = true;
+    }
+
+    break;
+
+  case "upvote_bachelor":
+    try {
+        upvoteBachelor($data['bachID']);
+        updateNumVoters($data['bachID']);
+        $response['success'] = "true";
+        
+      } catch (Exception $e){
+        $response['success'] = "false";
+        $response['error'] = $e;
+      }
+      break;
+
+  case "downvote_bachelor":
+  try {
+      downvoteBachelor($data['bachID']);
+      updateNumVoters($data['bachID']);
+      $response['success'] = "true";
+      
+    } catch (Exception $e){
+      $response['success'] = "false";
+      $response['error'] = $e;
+    }
+    break;
+
+    case "upvote_contestant":
+    try {
+        upvoteContestant($data['contestantID']);
+        $response['success'] = "true";
+        
+      } catch (Exception $e){
+        $response['success'] = "false";
+        $response['error'] = $e;
+      }
+      break;
+
+  case "downvote_contestant":
+  try {
+      downvoteContestant($data['contestantID']);
+      $response['success'] = "true";
+      
+    } catch (Exception $e){
+      $response['success'] = "false";
+      $response['error'] = $e;
+    }
+    break;
 
   case "add_applicant":
     // parse the data
