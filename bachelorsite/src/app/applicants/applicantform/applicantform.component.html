@@ -46,13 +46,7 @@
                             #reason>
                     </div>
 
-                    <div *ngIf="success; else elseBlock">
-                        <button class="btn btn-primary" (click)="sendToBackend(userForm.value)">Update</button>
-
-                    </div>
-                    <ng-template #elseBlock>
-                        <button class="btn btn-primary" (click)="sendToBackend(userForm.value)">Register</button>
-                    </ng-template>
+                    <button class="btn btn-primary" (click)="sendToBackend(userForm.value)">Register</button>
                     
                 </form>
                 <br>

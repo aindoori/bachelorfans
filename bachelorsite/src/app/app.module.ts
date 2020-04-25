@@ -21,6 +21,8 @@ import { UpdateApplicantComponent } from './applicants/update-applicant/update-a
 
 
 import { CommonModule } from "@angular/common";
+import { LoginComponent } from './applicants/login/login.component';
+import { LogoutComponent } from './applicants/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { CommonModule } from "@angular/common";
     CourtedComponent,
     ApplicantsHomeComponent,
     UpdateApplicantComponent,
-    BachelorComponent
+    BachelorComponent,
+    LoginComponent,
+    LogoutComponent
 
   ],
   imports: [
