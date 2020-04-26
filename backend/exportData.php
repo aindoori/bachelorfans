@@ -1,18 +1,19 @@
 <?php
+require('connectdb.php');
 //include database configuration file
 include 'attends.php';
 
 //get records from database
-$servername = 'localhost';
-$username   = 'bachelorfans';
-$password   = 'mike4bachelor2020';
-$dbname     = 'bachelorfans';
+// $servername = 'localhost';
+// $username   = 'bachelorfans';
+// $password   = 'mike4bachelor2020';
+// $dbname     = 'bachelorfans';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+// $conn = new mysqli($servername, $username, $password, $dbname);
+// // Check connection
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// } 
 //echo "Connected successfully";
 $sql = "SELECT * FROM attends";
 $query = mysqli_query($conn,$sql); 

@@ -1,5 +1,5 @@
 <?php
-// created new user in xampp
+// create new user in xampp
 $username = 'bachelorfans';
 $password = 'mike4bachelor2020';
 $host = 'localhost';

@@ -1,14 +1,10 @@
--- set up database security
-GRANT ALL ON rlm4mx.* TO 'aai2ge';
-GRANT ALL ON rlm4mx.* TO 'jec3up';
-GRANT ALL ON rlm4mx.* TO 'vm4kb';
-GRANT SELECT, INSERT, UPDATE ON rlm4mx.* TO 'rlm4mx_a'@'%'; -- updating rose rankings and viewing tables for end users
-
 -- create bachelor table ** (1)
 create table if not exists bachelor(
     bachelorID varchar(10) not null primary key, -- primary key bc there are two Brad Womacks (season number!)
     bachelor_name varchar(40) not null,
-    rose_ranking double not null,
+    rose_ranking numeric(10,2) not null,
+    constraint checkRoseRankingUpper check (rose_ranking <= 1),
+    constraint checkRoseRankingLower check (rose_ranking >= 0),
     num_voters int not null
 );
 
@@ -21,8 +17,10 @@ create table if not exists contestant(
     constraint checkAge check (age >= 18),
     hometown_city varchar(40) not null,
     hometown_state varchar(40) not null,
-    rose_ranking double not null,
-    sent_home bit not null, -- 0 if not sent home, 1 if sent home
+    rose_ranking numeric(10,2) not null,
+    constraint checkRoseRankingUpper check (rose_ranking <= 1),
+    constraint checkRoseRankingLower check (rose_ranking >= 0),
+    sent_home varchar(3) not null, -- 0 if not sent home, 1 if sent home
     num_voters int not null
 );
 
@@ -60,7 +58,7 @@ create table if not exists applicants(
     hometown_city varchar(40) not null,
     hometown_state varchar(40) not null,
     profession varchar(40) not null,
-    reason varchar(60) not null,
+    reason varchar(600) not null,
     check ((not isnull(profession)) and (not isnull(reason)))
 );
 
@@ -88,66 +86,66 @@ create table if not exists viewers(
     number_of_viewers double not null -- in millions
 );
 
-insert into contestant values('A24-1', 'Hannah Ann Sluss', 23, 'Powell', 'Tennessee', 0.8, 0, 1);
-insert into contestant values('A24-2', 'Madison Prewett', 23, 'Auburn', 'Alabama', 0.99, 0, 1);
-insert into contestant values('A24-3', 'Victoria Fuller', 26, 'Virginia Beach', 'Virginia', 0.3, 1, 1);
-insert into contestant values('A24-4', 'Kelsey Weier', 28, 'Urbandale', 'Iowa', 0.6, 1, 1);
-insert into contestant values('A24-5', 'Kelley Flanagan', 27, 'North Barrington', 'Illinois', 0.99, 1, 1);
-insert into contestant values('A24-6', 'Natasha Parker', 31, 'New York City', 'New York', 0.8, 1, 1);
-insert into contestant values('A24-7', 'Mykenna Dorn', 22, 'Langley', 'British Columbia', 0.4, 1, 1);
-insert into contestant values('A24-8', 'Sydney Hightower', 24, 'Northport', 'Alabama', 0.3, 1, 1);
-insert into contestant values('A24-9', 'Tammy Ly', 24, 'Syracuse', 'New York', 0.5, 1, 1);
-insert into contestant values('A24-10', 'Victoria Paul', 27, 'Alexandria', 'Louisiana', 0.2, 1, 1);
-insert into contestant values('A24-11', 'Lexi Buchanan', 26, 'Jacksonville', 'Florida', 0.6, 1, 1);
-insert into contestant values('A24-12', 'Shiann Lewis', 27, 'Las Vegas', 'Nevada', 0.7, 1, 1);
-insert into contestant values('A24-13', 'Deandra Kanu', 23, 'Bar Harbor', 'Maine', 0.5, 1, 1);
-insert into contestant values('A24-14', 'Kiarra Norman', 23, 'Kennesaw', 'Georgia', 0.7, 1, 1);
-insert into contestant values('A24-15', 'Savannah Mullins', 27, 'Houston', 'Texas', 0.5, 1, 1);
-insert into contestant values('A24-16', 'Alayah Benavidez', 24, 'Helotes', 'Texas', 0.4, 1, 1);
-insert into contestant values('A24-17', 'Alexa Caves', 27, 'Springfield', 'Illinois', 0.6, 1, 1);
-insert into contestant values('A24-18', 'Jasmine Nguyen', 25, 'Houston', 'Texas', 0.85, 1, 1);
-insert into contestant values('A24-19', 'Sarah Coffin', 24, 'Knoxville', 'Tennessee', 0.5, 1, 1);
-insert into contestant values('A24-20', 'Courtney Perry', 26, 'Venice', 'Florida', 0.5, 1, 1);
-insert into contestant values('A24-21', 'Lauren Jones', 26, 'Glendale', 'California', 0.5, 1, 1);
-insert into contestant values('A24-22', 'Payton Moran', 24, 'Wellesley', 'Massachusetts', 0.5, 1, 1);
-insert into contestant values('A24-23', 'Avonlea Elkins', 27, 'Fort Worth', 'Texas', 0.5, 1, 1);
-insert into contestant values('A24-24', 'Eunice Cho', 23, 'Chicago', 'Illinois', 0.5, 1, 1);
-insert into contestant values('A24-25', 'Jade Gilliland', 26, 'Mesa', 'Arizona', 0.5, 1, 1);
-insert into contestant values('A24-26', 'Jenna Serrano', 22, 'New Lenox', 'Illinois', 0.5, 1, 1);
-insert into contestant values('A24-27', 'Katrina Badowski', 28, 'St. Charles', 'Illinois', 0.5, 1, 1);
-insert into contestant values('A24-28', 'Kylie Ramos', 26, 'Davis', 'California', 0.5, 1, 1);
-insert into contestant values('A24-29', 'Maurissa Gunn', 23, 'Laurel', 'Montana', 0.5, 1, 1);
-insert into contestant values('A24-30', 'Megan Hops', 26, 'San Bruno', 'California', 0.5, 1, 1);
-insert into contestant values('B15-1', 'Jed Wyatt', 25, 'Sevierville', 'Tennessee', 0.01, 0, 1);
-insert into contestant values('B15-2', 'Tyler Cameron', 26, 'Jupiter', 'Florida', 0.99, 1, 1);
-insert into contestant values('B15-3', 'Peter Webber', 27, 'Westlake Village', 'California', 0.75, 1, 1);
-insert into contestant values('B15-4', 'Luke Parker', 24,'Gainesville', 'Georgia', 0.00, 1, 1);
-insert into contestant values('B15-5', 'Garrett Powell', 27, 'Homewood', 'Alabama', 0.56, 1, 1);
-insert into contestant values('B15-6', 'Mike Johnson', 31, 'San Antonio', 'Texas', 0.95, 1, 1);
-insert into contestant values('B15-7', 'Connor Saeli',24, 'Birmingham', 'Alabama', 0.95, 1, 1);
-insert into contestant values('B15-8', 'Dustin Kendrick', 30, 'Chicago', 'Illinois', 0.60, 1, 1);
-insert into contestant values('B15-9', 'Dylan Barbour', 24,'San Diego', 'California', 0.72, 1, 1);
-insert into contestant values('B15-10', 'Devin Harris', 27, 'Sherman Oaks', 'California', 0.57, 1, 1);
-insert into contestant values('B15-11', 'Grant Eckel', 30, 'San Clemente', 'California', 0.78, 1, 1);
-insert into contestant values('B15-12', 'Kevin Fortenberry', 27, 'Manteno', 'Illinois', 0.34, 1, 1);
-insert into contestant values('B15-13', 'John Paul Jones', 24, 'Lanham', 'Maryland', 0.90, 1, 1);
-insert into contestant values('B15-14', 'Matteo Valles', 25, 'Atlanta', 'Georgia', 0.80, 1, 1);
-insert into contestant values('B15-15', 'Luke Stone', 29, 'Marion', 'Massachusetts', 0.68, 1, 1);
-insert into contestant values('B15-16', 'Cameron Alaya', 30, 'Austin', 'Texas' ,0.20, 1, 1);
-insert into contestant values('B15-17', 'Joey Jones', 33, 'Bethesda', 'Maryland', 0.40, 1, 1);
-insert into contestant values('B15-18', 'Johnathan Saunders', 27, 'Los Angeles', 'California' , 0.42, 1, 1);
-insert into contestant values('B15-19', 'Tyler Gwozdzt', 28, 'Boca Raton', 'Florida', 0.10, 1, 1);
-insert into contestant values('B15-20', 'Connor Jenkins', 28, 'Newport Beach', 'California', 0.78, 1, 1);
-insert into contestant values('B15-21', 'Daron Blaylock', 25, 'Buckhead', 'Georgia', 0.50, 1, 1);
-insert into contestant values('B15-22', 'Matthew Spraggins', 23, 'Newport Beach', 'California', 0.34, 1, 1);
-insert into contestant values('B15-23', 'Brian Bowles', 30, 'Louisville', 'Kentucky', 0.36, 1, 1);
-insert into contestant values('B15-24', 'Chasen Coscia', 27, 'Ann Arbor', 'Michigan', 0.12, 1, 1);
-insert into contestant values('B15-25', 'Hunter Jones', 24, 'Westchester', 'California' , 0.22, 1, 1);
-insert into contestant values('B15-26', 'Joe Barsano', 30, 'Chicago', 'Illinois', 0.24, 1, 1);
-insert into contestant values('B15-27', 'Matt Donald', 26, 'Los Gatos', 'California', 0.50, 1, 1);
-insert into contestant values('B15-28', 'Ryan Spirko', 25, 'Philadelphia', 'Pennsylvania', 0.23, 1, 1);
-insert into contestant values('B15-29', 'Thomas Staton', 27, 'Detroit', 'Michigan', 0.25, 1, 1);
-insert into contestant values('B15-30', 'Scott Andersen', 28, 'Chicago', 'Illinois', 0.29, 1, 1);
+insert into contestant values('A24-1', 'Hannah Ann Sluss', 23, 'Powell', 'Tennessee', 0.5, 'No', 1);
+insert into contestant values('A24-2', 'Madison Prewett', 23, 'Auburn', 'Alabama', 0.5, 'No', 1);
+insert into contestant values('A24-3', 'Victoria Fuller', 26, 'Virginia Beach', 'Virginia', 0.5, 'Yes', 1);
+insert into contestant values('A24-4', 'Kelsey Weier', 28, 'Urbandale', 'Iowa', 0.5, 'Yes', 1);
+insert into contestant values('A24-5', 'Kelley Flanagan', 27, 'North Barrington', 'Illinois', 0.5, 'Yes', 1);
+insert into contestant values('A24-6', 'Natasha Parker', 31, 'New York City', 'New York', 0.5, 'Yes', 1);
+insert into contestant values('A24-7', 'Mykenna Dorn', 22, 'Langley', 'British Columbia', 0.5, 'Yes', 1);
+insert into contestant values('A24-8', 'Sydney Hightower', 24, 'Northport', 'Alabama', 0.5, 'Yes', 1);
+insert into contestant values('A24-9', 'Tammy Ly', 24, 'Syracuse', 'New York', 0.5, 'Yes', 1);
+insert into contestant values('A24-10', 'Victoria Paul', 27, 'Alexandria', 'Louisiana', 0.5, 'Yes', 1);
+insert into contestant values('A24-11', 'Lexi Buchanan', 26, 'Jacksonville', 'Florida', 0.5, 'Yes', 1);
+insert into contestant values('A24-12', 'Shiann Lewis', 27, 'Las Vegas', 'Nevada', 0.5, 'Yes', 1);
+insert into contestant values('A24-13', 'Deandra Kanu', 23, 'Bar Harbor', 'Maine', 0.5, 'Yes', 1);
+insert into contestant values('A24-14', 'Kiarra Norman', 23, 'Kennesaw', 'Georgia', 0.5, 'Yes', 1);
+insert into contestant values('A24-15', 'Savannah Mullins', 27, 'Houston', 'Texas', 0.5, 'Yes', 1);
+insert into contestant values('A24-16', 'Alayah Benavidez', 24, 'Helotes', 'Texas', 0.5, 'Yes', 1);
+insert into contestant values('A24-17', 'Alexa Caves', 27, 'Springfield', 'Illinois', 0.5, 'Yes', 1);
+insert into contestant values('A24-18', 'Jasmine Nguyen', 25, 'Houston', 'Texas', 0.5, 'Yes', 1);
+insert into contestant values('A24-19', 'Sarah Coffin', 24, 'Knoxville', 'Tennessee', 0.5, 'Yes', 1);
+insert into contestant values('A24-20', 'Courtney Perry', 26, 'Venice', 'Florida', 0.5, 'Yes', 1);
+insert into contestant values('A24-21', 'Lauren Jones', 26, 'Glendale', 'California', 0.5, 'Yes', 1);
+insert into contestant values('A24-22', 'Payton Moran', 24, 'Wellesley', 'Massachusetts', 0.5, 'Yes', 1);
+insert into contestant values('A24-23', 'Avonlea Elkins', 27, 'Fort Worth', 'Texas', 0.5, 'Yes', 1);
+insert into contestant values('A24-24', 'Eunice Cho', 23, 'Chicago', 'Illinois', 0.5, 'Yes', 1);
+insert into contestant values('A24-25', 'Jade Gilliland', 26, 'Mesa', 'Arizona', 0.5, 'Yes', 1);
+insert into contestant values('A24-26', 'Jenna Serrano', 22, 'New Lenox', 'Illinois', 0.5, 'Yes', 1);
+insert into contestant values('A24-27', 'Katrina Badowski', 28, 'St. Charles', 'Illinois', 0.5, 'Yes', 1);
+insert into contestant values('A24-28', 'Kylie Ramos', 26, 'Davis', 'California', 0.5, 'Yes', 1);
+insert into contestant values('A24-29', 'Maurissa Gunn', 23, 'Laurel', 'Montana', 0.5, 'Yes', 1);
+insert into contestant values('A24-30', 'Megan Hops', 26, 'San Bruno', 'California', 0.5, 'Yes', 1);
+insert into contestant values('B15-1', 'Jed Wyatt', 25, 'Sevierville', 'Tennessee', 0.5, 'No', 1);
+insert into contestant values('B15-2', 'Tyler Cameron', 26, 'Jupiter', 'Florida', 0.5, 'Yes', 1);
+insert into contestant values('B15-3', 'Peter Webber', 27, 'Westlake Village', 'California', 0.5, 'Yes', 1);
+insert into contestant values('B15-4', 'Luke Parker', 24,'Gainesville', 'Georgia', 0.5, 'Yes', 1);
+insert into contestant values('B15-5', 'Garrett Powell', 27, 'Homewood', 'Alabama', 0.5, 'Yes', 1);
+insert into contestant values('B15-6', 'Mike Johnson', 31, 'San Antonio', 'Texas', 0.5, 'Yes', 1);
+insert into contestant values('B15-7', 'Connor Saeli',24, 'Birmingham', 'Alabama', 0.5, 'Yes', 1);
+insert into contestant values('B15-8', 'Dustin Kendrick', 30, 'Chicago', 'Illinois', 0.5, 'Yes', 1);
+insert into contestant values('B15-9', 'Dylan Barbour', 24,'San Diego', 'California', 0.5, 'Yes', 1);
+insert into contestant values('B15-10', 'Devin Harris', 27, 'Sherman Oaks', 'California', 0.5, 'Yes', 1);
+insert into contestant values('B15-11', 'Grant Eckel', 30, 'San Clemente', 'California', 0.5, 'Yes', 1);
+insert into contestant values('B15-12', 'Kevin Fortenberry', 27, 'Manteno', 'Illinois', 0.5, 'Yes', 1);
+insert into contestant values('B15-13', 'John Paul Jones', 24, 'Lanham', 'Maryland', 0.5, 'Yes', 1);
+insert into contestant values('B15-14', 'Matteo Valles', 25, 'Atlanta', 'Georgia', 0.5, 'Yes', 1);
+insert into contestant values('B15-15', 'Luke Stone', 29, 'Marion', 'Massachusetts', 0.5, 'Yes', 1);
+insert into contestant values('B15-16', 'Cameron Alaya', 30, 'Austin', 'Texas' ,0.5, 'Yes', 1);
+insert into contestant values('B15-17', 'Joey Jones', 33, 'Bethesda', 'Maryland', 0.5, 'Yes', 1);
+insert into contestant values('B15-18', 'Johnathan Saunders', 27, 'Los Angeles', 'California', 0.5, 'Yes', 1);
+insert into contestant values('B15-19', 'Tyler Gwozdzt', 28, 'Boca Raton', 'Florida', 0.5, 'Yes', 1);
+insert into contestant values('B15-20', 'Connor Jenkins', 28, 'Newport Beach', 'California', 0.5, 'Yes', 1);
+insert into contestant values('B15-21', 'Daron Blaylock', 25, 'Buckhead', 'Georgia', 0.5, 'Yes', 1);
+insert into contestant values('B15-22', 'Matthew Spraggins', 23, 'Newport Beach', 'California', 0.5, 'Yes', 1);
+insert into contestant values('B15-23', 'Brian Bowles', 30, 'Louisville', 'Kentucky', 0.5, 'Yes', 1);
+insert into contestant values('B15-24', 'Chasen Coscia', 27, 'Ann Arbor', 'Michigan', 0.5, 'Yes', 1);
+insert into contestant values('B15-25', 'Hunter Jones', 24, 'Westchester', 'California', 0.5, 'Yes', 1);
+insert into contestant values('B15-26', 'Joe Barsano', 30, 'Chicago', 'Illinois', 0.5, 'Yes', 1);
+insert into contestant values('B15-27', 'Matt Donald', 26, 'Los Gatos', 'California', 0.5, 'Yes', 1);
+insert into contestant values('B15-28', 'Ryan Spirko', 25, 'Philadelphia', 'Pennsylvania', 0.5, 'Yes', 1);
+insert into contestant values('B15-29', 'Thomas Staton', 27, 'Detroit', 'Michigan', 0.5, 'Yes', 1);
+insert into contestant values('B15-30', 'Scott Andersen', 28, 'Chicago', 'Illinois', 0.5, 'Yes', 1);
 insert into contestant_profession values('A24-1', 'Model');
 insert into contestant_profession values('A24-2', 'Foster Parent Recruiter');
 insert into contestant_profession values('A24-3', 'Medical Sales Rep');
@@ -501,43 +499,54 @@ insert into viewers values('B14', 6.71);
 insert into viewers values('B15', 7.48);
 
 -- the bachelors and bachelorettes
-insert into bachelor values('A24', 'Peter Weber', 0.2, 1);
-insert into bachelor values('B15', 'Hannah Brown', 0.99, 1);
-insert into bachelor values('A23', 'Colton Underwood', 0.6, 1);
-insert into bachelor values('B14', 'Becca Kufrin', 0.99, 1);
-insert into bachelor values('A22', 'Arie Luyendyk Jr.', 0.3, 1);
-insert into bachelor values('B13', 'Rachel Lindsay', 0.99, 1);
+insert into bachelor values('A24', 'Peter Weber', 0.5, 1);
+insert into bachelor values('B15', 'Hannah Brown', 0.5, 1);
+insert into bachelor values('A23', 'Colton Underwood', 0.5, 1);
+insert into bachelor values('B14', 'Becca Kufrin', 0.5, 1);
+insert into bachelor values('A22', 'Arie Luyendyk Jr.', 0.5, 1);
+insert into bachelor values('B13', 'Rachel Lindsay', 0.5, 1);
 insert into bachelor values('A21', 'Nick Viall', 0.5, 1);
-insert into bachelor values('B12', 'Jojo Fletcher', 0.99, 1);
+insert into bachelor values('B12', 'Jojo Fletcher', 0.5, 1);
 insert into bachelor values('A20', 'Ben Higgins', 0.5, 1);
-insert into bachelor values('B11', 'Kaitlyn Bristowe', 0.99, 1);
+insert into bachelor values('B11', 'Kaitlyn Bristowe', 0.5, 1);
 insert into bachelor values('A19', 'Chris Soules', 0.5, 1);
-insert into bachelor values('B10', 'Andi Dorfman', 0.99, 1);
+insert into bachelor values('B10', 'Andi Dorfman', 0.5, 1);
 insert into bachelor values('A18', 'Juan Pablo Galavis', 0.5, 1);
-insert into bachelor values('B9', 'Desiree Hartsock', 0.99, 1);
-insert into bachelor values('A17', 'Sean Lowe', 0.99, 1);
-insert into bachelor values('B8', 'Emily Maynard', 0.99, 1);
-insert into bachelor values('A16', 'Ben Flajnik', 0.99, 1);
-insert into bachelor values('B7', 'Ashley Hebert', 0.99, 1);
-insert into bachelor values('A15', 'Brad Womack', 0.99, 1);
-insert into bachelor values('B6', 'Ali Fedotowsky', 0.99, 1);
-insert into bachelor values('A14', 'Jake Pavelka', 0.99, 1);
-insert into bachelor values('B5', 'Jillian Harris', 0.99, 1);
-insert into bachelor values('A13', 'Jason Mesnick', 0.99, 1);
-insert into bachelor values('B4', 'DeAnna Pappas', 0.99, 1);
-insert into bachelor values('A12', 'Matt Grant', 0.99, 1);
-insert into bachelor values('B3', 'Jen Schefft', 0.99, 1);
-insert into bachelor values('A11', 'Brad Womack', 0.99, 1);
-insert into bachelor values('B2', 'Meredith Phillips', 0.99, 1);
-insert into bachelor values('A10', 'Andrew Baldwin', 0.99, 1);
-insert into bachelor values('B1', 'Trista Rehn', 0.99, 1);
-insert into bachelor values('A9', 'Lorenzo Borghese', 0.99, 1);
-insert into bachelor values('A8', 'Travis Lane Stork', 0.99, 1);
-insert into bachelor values('A7', "Charlie O'Connell", 0.99, 1);
-insert into bachelor values('A6', 'Byron Velvick', 0.99, 1);
-insert into bachelor values('A5', 'Jesse Palmer', 0.99, 1);
-insert into bachelor values('A4', 'Bob Guiney', 0.99, 1);
-insert into bachelor values('A3', 'Andrew Firestone', 0.99, 1);
-insert into bachelor values('A2', 'Aaron Buerge', 0.99, 1);
-insert into bachelor values('A1', 'Alex Michel', 0.99, 1);
+insert into bachelor values('B9', 'Desiree Hartsock', 0.5, 1);
+insert into bachelor values('A17', 'Sean Lowe', 0.5, 1);
+insert into bachelor values('B8', 'Emily Maynard', 0.5, 1);
+insert into bachelor values('A16', 'Ben Flajnik', 0.5, 1);
+insert into bachelor values('B7', 'Ashley Hebert', 0.5, 1);
+insert into bachelor values('A15', 'Brad Womack', 0.5, 1);
+insert into bachelor values('B6', 'Ali Fedotowsky', 0.5, 1);
+insert into bachelor values('A14', 'Jake Pavelka', 0.5, 1);
+insert into bachelor values('B5', 'Jillian Harris', 0.5, 1);
+insert into bachelor values('A13', 'Jason Mesnick', 0.5, 1);
+insert into bachelor values('B4', 'DeAnna Pappas', 0.5, 1);
+insert into bachelor values('A12', 'Matt Grant', 0.5, 1);
+insert into bachelor values('B3', 'Jen Schefft', 0.5, 1);
+insert into bachelor values('A11', 'Brad Womack', 0.5, 1);
+insert into bachelor values('B2', 'Meredith Phillips', 0.5, 1);
+insert into bachelor values('A10', 'Andrew Baldwin', 0.5, 1);
+insert into bachelor values('B1', 'Trista Rehn', 0.5, 1);
+insert into bachelor values('A9', 'Lorenzo Borghese', 0.5, 1);
+insert into bachelor values('A8', 'Travis Lane Stork', 0.5, 1);
+insert into bachelor values('A7', "Charlie O'Connell", 0.5, 1);
+insert into bachelor values('A6', 'Byron Velvick', 0.5, 1);
+insert into bachelor values('A5', 'Jesse Palmer', 0.5, 1);
+insert into bachelor values('A4', 'Bob Guiney', 0.5, 1);
+insert into bachelor values('A3', 'Andrew Firestone', 0.5, 1);
+insert into bachelor values('A2', 'Aaron Buerge', 0.5, 1);
+insert into bachelor values('A1', 'Alex Michel', 0.5, 1);
 
+-- procedures
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getBachelors`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER select * from bachelor;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getViewers`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER select * from viewers;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAttends`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+SELECT contestant.contestant_name, dates.activity FROM ((attends inner join dates on attends.dateID = dates.dateID) 
+    inner join contestant on attends.contestantID = contestant.contestantID);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getContestants`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER select * from contestant;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCourted`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+SELECT contestant.contestant_name, bachelor.bachelor_name FROM ((courted inner join bachelor on courted.bachelorID = bachelor.bachelorID) 
+    inner join contestant on courted.contestantID = contestant.contestantID);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getDates`() NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER select * from dates;

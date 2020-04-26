@@ -63,7 +63,7 @@ function getAllBachelors() {
 
 function upvoteBachelor($ID) {
 	global $db;
-	$query = "update bachelor set rose_ranking = rose_ranking + 0.1 where bachelorID=:ID";
+	$query = "update bachelor set rose_ranking = rose_ranking + 0.05 where bachelorID=:ID";
 	$statement = $db->prepare($query);
 	$statement->bindValue(':ID', $ID);
 	$statement->execute();
@@ -72,7 +72,7 @@ function upvoteBachelor($ID) {
 
 function downvoteBachelor($ID) {
 	global $db;
-	$query = "update bachelor set rose_ranking = rose_ranking - 0.1 where bachelorID=:ID";
+	$query = "update bachelor set rose_ranking = rose_ranking - 0.05 where bachelorID=:ID";
 	$statement = $db->prepare($query);
 	$statement->bindValue(':ID', $ID);
 	$statement->execute();
