@@ -57,7 +57,7 @@ export class UpdateApplicantComponent implements OnInit {
   		}
   	});
 
-  	console.log('You submitted value: ', {type: "add_applicant", data:this.userModel});
+  	console.log('You submitted value: ', {type: "update_applicant", data:this.userModel});
 
   	this.http.post(POST_URL, params)
     .subscribe((response) => {
